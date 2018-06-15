@@ -1,0 +1,17 @@
+<%= simple_form_for @person do |form| %>
+
+  <div style="max-width: 10em;">
+    <%= form.input :name %>
+  </div>
+
+  <div style="max-width: 5em;">
+    <%= form.simple_fields_for :scores, @person.scores.order(:id) do |s| %>
+      <%= s.input :name, disabled: true %>
+      <%= s.input :score,  collection: 1..10, include_blank: false %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

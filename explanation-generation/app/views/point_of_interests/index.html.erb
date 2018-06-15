@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Point Of Interests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @point_of_interests.each do |point_of_interest| %>
+      <tr>
+        <td><%= point_of_interest.name %></td>
+        <td><%= link_to 'Show', point_of_interest %></td>
+        <td><%= link_to 'Edit', edit_point_of_interest_path(point_of_interest) %></td>
+        <td><%= link_to 'Destroy', point_of_interest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Point Of Interest', new_point_of_interest_path %>

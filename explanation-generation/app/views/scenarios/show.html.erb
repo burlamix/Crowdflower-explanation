@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @scenario.name %></h1>
+
+<%= link_to 'Edit', edit_scenario_path(@scenario) %> |
+<%= link_to 'Back', scenarios_path %>
+
+<details>
+  <summary>Description</summary>
+  <p><%= @scenario.description %></p>
+</details>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Person</th>
+    <% @scenario.point_of_interests.each do |poi| %>
+      <th><%= poi.name %></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @scenario.people.each do |person| %>
+    <tr>
+      <td><%= person.name %></td>
+      <% @scenario.point_of_interests.each do |poi| %>
+        <td><%= poi.scores.find_by(person: person)&.score || '-' %></td>
+      <% end %>
+      <td>
+      <%= link_to edit_person_path(person) do %>
+        <%= icon('far', 'edit') %>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Sequences</h2>
+<% @scenario.sequences.each do |sequence| %>
+  <h4><%= sequence.strategy %></h4>
+
+  <p>
+    <% sequence.sequence['sequence_poi_names'].each do |name| %>
+      <span class="badge badge-light"><%= name %></span>
+    <% end %>
+  </p>
+
+
+  <h4>Explanations</h4>
+  <% @explanations = SequenceExplanations::GenerateExplanation.call(sequence: sequence).explanations %>
+  <% @explanations.each do |name, explanation| %>
+    <h5><%= name %></h5>
+    <p><%= explanation %></p>
+  <% end %>
+  <%= link_to 'Download task file', create_task_file_path(id: @scenario.id, explanations: @explanations), method: :post %>
+<% end %>
