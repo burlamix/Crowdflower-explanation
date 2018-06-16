@@ -36,3 +36,5 @@ Tested on Ubuntu 18.04.
 7. Visit `localhost:3000` to see the demo project
 
     The demo scenario is located at `localhost:3000/scenarios/1`, when the page is refreshed, new explanations are generated based on the demo scenario.
+
+8. Alternatively, you can visit `https://explanation-generation.herokuapp.com/`, where the demo app is dpeloyed.
