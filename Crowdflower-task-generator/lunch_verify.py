@@ -4,12 +4,11 @@ from utils import make_instruction_verify
 from utils import make_cml_verify
 from utils import file_parser_verify
 
-api_key="xGxMendqyvbVgjEjXoH-"
-ì
+
 
 #Creating data for the playload
 
-API_KEY = "xGxMendqyvbVgjEjXoH-"
+API_KEY = str(sys.argv[2])
 request_url = "https://api.figure-eight.com/v1/jobs.json"
 headers = {'content-type': 'application/json'}
 
